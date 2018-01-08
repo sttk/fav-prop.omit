@@ -194,6 +194,21 @@ describe('fav.prop.omit', function() {
     }
     expect(omit(src, keys)).to.deep.equal(obj2);
   });
+
+  it('Should not throw an error when 2nd arg contains a Symbol array',
+  function() {
+    if (typeof Symbol !== 'function') {
+      this.skip();
+      return;
+    }
+
+    var a = Symbol('a'), b = Symbol('b');
+    var obj = {};
+    obj[a] = {};
+    obj[a][b] = 123;
+
+    expect(omit(obj, [[a]])[a][b]).to.equal(123);
+  });
 });
 
 })();
