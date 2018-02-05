@@ -54,7 +54,6 @@ Creates a new plain object and copies enumerable own properties (keys and symbol
 
 A plain object which is copied property keys and symbols of a source object.
 
-
 ## Checked                                                                      
 
 ### Node.js (4〜9)

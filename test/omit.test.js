@@ -165,7 +165,7 @@ describe('fav.prop.omit', function() {
   it('Should return an full assigned object when second arg is not an array',
   function() {
     var src = { a: 1, b: 2, c: 3 };
-    [undefined, null, true, false, 0, 123, '', 'ABC', {}, { a: 'b' },
+    [undefined, null, true, false, 0, 123, '', 'a', {}, { a: 'b' },
      function() {}
     ].forEach(function(arg2) {
       expect(omit(src, arg2)).to.not.equal(src);
