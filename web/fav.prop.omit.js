@@ -13,12 +13,10 @@ function omit(src, omittedProps) {
 
   for (var j = 0, nj = omittedProps.length; j < nj; j++) {
     var omitted = omittedProps[j];
-    try {
-      delete dest[omitted];
-    } catch (e) {
-      // If `omitted` is an array of Symbol, dest[omitted] throws an error,
-      // but this function suppress it.
+    if (isArray(omitted)) {
+      continue;
     }
+    delete dest[omitted];
   }
   return dest;
 }

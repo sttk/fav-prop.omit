@@ -1,6 +1,6 @@
 # [@fav/prop.omit][repo-url] [![NPM][npm-img]][npm-url] [![MIT License][mit-img]][mit-url] [![Build Status][travis-img]][travis-url] [![Build Status][appveyor-img]][appveyor-url] [![Coverage status][coverage-img]][coverage-url]
 
-Creates a new plain object and copys properties of a source object except specified.
+Creates a new plain object and copys properties of a source object except specified properties.
 
 > "fav" is an abbreviation of "favorite" and also the acronym of "for all versions".
 > This package is intended to support all Node.js versions and many browsers as possible.
@@ -43,6 +43,9 @@ omit({ a: 1, b: 2, c: 3 }, ['b']); // => { a: 1, c: 3 }
 
 Creates a new plain object and copies enumerable own properties (keys and symbols) of *src* object, but the properties which are included in *omittedProps* are omitted.
 
+***NOTE:*** *All versions of Node.js allows to use a string array for getting or setting property, like `obj[['a','b']] == obj['a,b']`. An Symbol array is allowed as same until v4, but is not allowed on v5 and later (TypeError is thrown).
+To support same behaviors for all versions, this function does not allow to use an array as a property.*
+
 **Parameters:**
 
 | Parameter      |  Type  | Description                                |
@@ -53,6 +56,7 @@ Creates a new plain object and copies enumerable own properties (keys and symbol
 **Returns:**
 
 A plain object which is copied property keys and symbols of a source object.
+
 
 ## Checked                                                                      
 
@@ -97,7 +101,7 @@ This program is free software under [MIT][mit-url] License.
 See the file LICENSE in this distribution for more details.
 
 [repo-url]: https://github.com/sttk/fav-prop.omit/
-[npm-img]: https://img.shields.io/badge/npm-v0.1.0-blue.svg
+[npm-img]: https://img.shields.io/badge/npm-v1.0.0-blue.svg
 [npm-url]: https://www.npmjs.com/package/@fav/prop.omit
 [mit-img]: https://img.shields.io/badge/license-MIT-green.svg
 [mit-url]: https://opensource.org/licenses/MIT

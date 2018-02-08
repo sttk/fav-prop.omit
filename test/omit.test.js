@@ -208,4 +208,30 @@ describe('fav.prop.omit', function() {
 
     expect(omit(obj, [[a]])[a][b]).to.equal(123);
   });
+
+  it('Should not allow to use an array as a property', function() {
+    var obj = {};
+    obj['a'] = 1;
+    obj['a,b'] = 2;
+    expect(obj.a).to.equal(1);
+    expect(obj[['a']]).to.equal(1);
+    expect(obj['a,b']).to.equal(2);
+    expect(obj[['a','b']]).to.equal(2);
+
+    var expected0 = assign({}, obj);
+    var expected1 = { a: 1 };
+    var expected2 = {};
+    expected2['a,b'] = 2;
+
+    expect(omit(obj, ['a'])).to.deep.equal(expected2);
+    expect(omit(obj, ['a,b'])).to.deep.equal(expected1);
+    expect(omit(obj, ['a', 'a,b'])).to.deep.equal({});
+
+    expect(omit(obj, [['a']])).to.deep.equal(expected0);
+    expect(omit(obj, [['a','b']])).to.deep.equal(expected0);
+
+    expect(omit(obj, [['a','b'], 'a'])).to.deep.equal(expected2);
+    expect(omit(obj, [['a'], 'a,b'])).to.deep.equal(expected1);
+    expect(omit(obj, [['a'], ['a','b']])).to.deep.equal(expected0);
+  });
 });
