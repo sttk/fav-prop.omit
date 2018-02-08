@@ -1,6 +1,6 @@
 {
   "name": "@fav/prop.omit",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Creates a new plain object and copys properties of a source object except specified properties",
   "main": "index.js",
   "files": [
